@@ -19,6 +19,7 @@ public class Arboles {
         a=4+3;
         int b=2;
         int c=b+a;
+        String g="Hola";
         
 
     }
