@@ -16,6 +16,8 @@ public class Arboles {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        int a =9;
+        int c = a-3;
     }
     
 }
