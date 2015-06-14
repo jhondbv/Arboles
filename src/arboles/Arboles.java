@@ -17,6 +17,7 @@ public class Arboles {
     public static void main(String[] args) {
         int a;
         a=4+3;
+        int b = 43;
 
     }
     
