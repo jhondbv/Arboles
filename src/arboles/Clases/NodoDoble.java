@@ -10,5 +10,47 @@ package arboles.Clases;
  * @author jhon
  */
 public class NodoDoble {
+
+    Object dato;
+    NodoDoble ld;
+    NodoDoble li;
     
+    NodoDoble(Object d)
+    {
+        this.dato=d;
+        this.ld=null;
+        this.li=null;
+    }
+    
+    NodoDoble()
+    {
+        this.dato=null;
+        this.ld=null;
+        this.li=null;
+    }
+    
+    public void asignaDato(Object d){
+        this.dato=d;
+    }
+    
+    public void asignaLd(NodoDoble ligad){
+        this.ld=ligad;
+    }
+    
+    public void asignaLi(NodoDoble ligai){
+        this.li=ligai;
+    }
+    
+    public Object retornaDato(){
+        return dato;
+    }
+
+    public NodoDoble retornaLd(){
+        return ld;
+    }
+    
+    public NodoDoble retornaLi(){
+        return li;
+    }
+
 }

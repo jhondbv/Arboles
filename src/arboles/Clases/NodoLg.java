@@ -14,7 +14,7 @@ public class NodoLg {
     Object dato;
     NodoLg liga;
     
-    NodoLg(String d)
+    NodoLg(Object d)
     {
         this.sw=0;
         this.dato=d;
