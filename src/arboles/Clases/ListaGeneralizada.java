@@ -33,14 +33,14 @@ public class ListaGeneralizada {
                    ultimo=x;
                    break;
                case '(':
-                   pila.push(ultimo);//¿Sí se usa este para apilar?
+                   pila.push(ultimo);//Para apilar
                    x=new NodoLg(null);
                    ultimo.asignaSw(1);
                     ultimo.asignaDato(x);
                    ultimo=x;
                    break;
                case ')':
-                   ultimo=(NodoLg)pila.pop(); //¿Sí se usa este para desapilar?
+                   ultimo=(NodoLg)pila.pop(); //Para desapilar
                    break;
                default:
                    ultimo.asignaSw(0);
