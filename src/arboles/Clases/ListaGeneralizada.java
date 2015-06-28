@@ -13,46 +13,47 @@ import java.util.Stack;
 public class ListaGeneralizada {
     
     
-    Stack pila;
-    NodoLg x;
-    NodoLg ultimo;
-    String hilera;
-    int n;
-    void construyeLg(String s){
-        pila = new Stack();
-        x = new NodoLg(null);
-        ultimo = new NodoLg();
-        hilera=s;
-        n=s.length();
-        for(int i=1;i<n;i++){
-           switch (hilera.charAt(i)){
-               
-               case ',':
-                   x=new NodoLg(null);
-                   ultimo.asignaLiga(x);
-                   ultimo=x;
-                   break;
-               case '(':
-                   pila.push(ultimo);//Para apilar
-                   x=new NodoLg(null);
-                   ultimo.asignaSw(1);
+
+    public void construyeArbolLg(String s){
+            Stack pila;
+            NodoLg primero, ultimo, x;
+            String hilera;
+            int n,i;
+            pila = new Stack();
+            hilera = s;
+            primero = new NodoLg(null);
+            ultimo = primero;
+            primero.asignaDato(hilera.charAt(1));
+            n = hilera.length();
+            i = 3;
+            while (i<=n-3){ //verificar que sí sea -3
+                x = new NodoLg(null);
+                ultimo.asignaLiga(x);
+                if (hilera.charAt(i+1)== '('){
+                    ultimo.asignaSw(1);
+                    pila.push(ultimo);
+                    x = new NodoLg(hilera.charAt(i));
                     ultimo.asignaDato(x);
-                   ultimo=x;
-                   break;
-               case ')':
-                   ultimo=(NodoLg)pila.pop(); //Para desapilar
-                   break;
-               default:
-                   ultimo.asignaSw(0);
-                   ultimo.asignaDato(hilera.charAt(i));
-                    
-           
-           }
+                    ultimo = x;
+                    i = i+2;
+                } else {
+                    ultimo.asignaDato(hilera.charAt(i));
+                    if(hilera.charAt(i+1) == ')'){
+                        i++;
+                        while(i<n-1 && hilera.charAt(i) == ')' && !pila.empty()){
+                            ultimo = (NodoLg)pila.pop();
+                            i++;
+                        }
+                        if(hilera.charAt(i) == ','){
+                            i++;
+                        }
+                    }else {
+                        i = i+2;
+                    }
+                }
+            
+            }
         }
     
 }
-}
-    
 
-
-    
