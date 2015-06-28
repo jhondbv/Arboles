@@ -14,17 +14,17 @@ public class ListaGeneralizada {
     
     
     Stack pila;
-    NodoLg x;
-    NodoLg ultimo;
+    NodoLg x,Raiz,ultimo;
     String hilera;
     int n;
-    void construyeLg(String s){
+    public void construyeLg(String s){
         pila = new Stack();
         x = new NodoLg(null);
-        ultimo = new NodoLg();
+        Raiz= x ;
+        ultimo=x;
         hilera=s;
         n=s.length();
-        for(int i=1;i<n;i++){
+        for(int i=1;i<n-1;i++){
            switch (hilera.charAt(i)){
                
                case ',':
@@ -49,7 +49,8 @@ public class ListaGeneralizada {
            
            }
         }
-    
+    int a = 9;
+    a = 9/3;
 }
 }
     
