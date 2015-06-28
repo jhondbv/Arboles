@@ -11,8 +11,6 @@ import java.util.Stack;
  * @author vero
  */
 public class ListaGeneralizada {
-    
-    
 
     public void construyeArbolLg(String s){
             Stack pila;
