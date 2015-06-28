@@ -37,23 +37,27 @@ public class ListaGeneralizada {
                    x=new NodoLg(null);
                    ultimo.asignaSw(1);
                     ultimo.asignaDato(x);
-                   ultimo=x;
-                   break;
-               case ')':
-                   ultimo=(NodoLg)pila.pop(); //Para desapilar
-                   break;
-               default:
-                   ultimo.asignaSw(0);
-                   ultimo.asignaDato(hilera.charAt(i));
-                    
-           
-           }
+                    ultimo = x;
+                    i = i+2;
+                } else {
+                    ultimo.asignaDato(hilera.charAt(i));
+                    if(hilera.charAt(i+1) == ')'){
+                        i++;
+                        while(i<n-1 && hilera.charAt(i) == ')' && !pila.empty()){
+                            ultimo = (NodoLg)pila.pop();
+                            i++;
+                        }
+                        if(hilera.charAt(i) == ','){
+                            i++;
+                        }
+                    }else {
+                        i = i+2;
+                    }
+                }
+            
+            }
         }
     int a = 9;
     a = 9/3;
 }
-}
-    
 
-
-    
