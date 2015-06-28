@@ -12,7 +12,7 @@ import java.util.Stack;
  */
 public class ListaDobleLigada {
     
-    public NodoDoble convierteNarioABinario(NodoLg r){ //En guía dice árbol como parámetro, ¿qué pongo?
+    public NodoDoble convierteNarioABinario(NodoLg r){
         NodoDoble raiz, x, ultimo;
         NodoLg p, q;
         Stack pila;
@@ -22,46 +22,39 @@ public class ListaDobleLigada {
         raiz = x;
         ultimo = x;
         p = p.retornaLiga();
-        while (p.retornaSw() == 0){
-            x = new NodoDoble(p.retornaDato());
+        while (p != null){
+            if(p.retornaSw() == 0){
+                 x = new NodoDoble(p.retornaDato());
+            }else{
+                q = (NodoLg)p.retornaDato();
+                x = new NodoDoble(q.retornaDato());
+                pila.push(x);
+                pila.push(q.retornaLiga());
+            }
+            ultimo.asignaLi(x);
+            ultimo = x;
+            p = p.retornaLiga();
+            while (p != null){
+                if(p.retornaSw() == 0){
+                 x = new NodoDoble(p.retornaDato());
+            }else{
+                q = (NodoLg)p.retornaDato();
+                x = new NodoDoble(q.retornaDato());
+                pila.push(x);
+                pila.push(q.retornaLiga());
+            }
+            ultimo.asignaLi(x);
+            ultimo = x;
+            p = p.retornaLiga();   
+            }
+            if (!pila.empty()){
+                p = (NodoLg)pila.pop();
+                ultimo = (NodoDoble)pila.pop();
+            }
         }
-        
-        
-        
+
         return raiz;
     }
-
- /*11.		while  (p != null)  do	
-12.			if  (p.retornaSw() == 0)  then
-13.				x = new  nodoDoble(p.retornaDato())
-14.			else
-15.				q = (nodoLg)p.retornaDato()
-16.				x = new   nodoDoble(q.retornaDato())
-17.				pila.apilar(x)
-18.				pila.apilar(q.retornaLiga())
-19.			end(if)
-20.			ultimo.asignaLi(x)
-21.			ultimo = x
-22.			p = p.retornaLiga()
-23.			while  (p != null)  do
-24.				if  (p.retornaSw() == 0)  then
-25.					x = new   nodoDoble(p.retornaDato())
-26.				else
-27.					q = (nodoLg)p.retornaDato()
-28.					x = new   nodoDoble(q.retornaDato())
-29.					pila.apilar(x)
-30.					pila.apilar(q.retornaLiga())
-31.				end(if)
-32.				ultimo.asignaLd(x)
-33.				ultimo = x
-34.				p = p.retornaLiga()
-35.			end(while)
-36.			if  (!pila.esVacia())  then
-37.				p = (nodoLg)pila.desapilar()
-38.				ultimo = (nodoDoble)pila.desapilar()
-39.			end(if)
-40.		end(while)		
-45.	Fin(convierteLgABinario)*/
 
     
     public int altura(NodoDoble raiz){ //Se ingresa ya el árbol convertido de n-ario a binario
