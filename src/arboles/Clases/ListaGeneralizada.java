@@ -39,7 +39,7 @@ public class ListaGeneralizada {
                     ultimo.asignaDato(x);
                     ultimo = x;
                     i = i+2;
-                } else {
+               case ')':
                     ultimo.asignaDato(hilera.charAt(i));
                     if(hilera.charAt(i+1) == ')'){
                         i++;
@@ -57,7 +57,6 @@ public class ListaGeneralizada {
             
             }
         }
-    int a = 9;
-    a = 9/3;
+
 }
 
