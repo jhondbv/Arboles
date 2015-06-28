@@ -11,30 +11,35 @@ import java.util.Stack;
  * @author vero
  */
 public class ListaGeneralizada {
-
-    public void construyeArbolLg(String s){
-            Stack pila;
-            NodoLg primero, ultimo, x;
-            String hilera;
-            int n,i;
-            pila = new Stack();
-            hilera = s;
-            primero = new NodoLg(null);
-            ultimo = primero;
-            primero.asignaDato(hilera.charAt(1));
-            n = hilera.length();
-            i = 3;
-            while (i<=n-3){ //verificar que sí sea -3
-                x = new NodoLg(null);
-                ultimo.asignaLiga(x);
-                if (hilera.charAt(i+1)== '('){
-                    ultimo.asignaSw(1);
-                    pila.push(ultimo);
-                    x = new NodoLg(hilera.charAt(i));
+    
+    
+    Stack pila;
+    NodoLg x,Raiz,ultimo;
+    String hilera;
+    int n;
+    public void construyeLg(String s){
+        pila = new Stack();
+        x = new NodoLg(null);
+        Raiz= x ;
+        ultimo=x;
+        hilera=s;
+        n=s.length();
+        for(int i=1;i<n-1;i++){
+           switch (hilera.charAt(i)){
+               
+               case ',':
+                   x=new NodoLg(null);
+                   ultimo.asignaLiga(x);
+                   ultimo=x;
+                   break;
+               case '(':
+                   pila.push(ultimo);//Para apilar
+                   x=new NodoLg(null);
+                   ultimo.asignaSw(1);
                     ultimo.asignaDato(x);
                     ultimo = x;
                     i = i+2;
-                } else {
+               case ')':
                     ultimo.asignaDato(hilera.charAt(i));
                     if(hilera.charAt(i+1) == ')'){
                         i++;
@@ -52,6 +57,6 @@ public class ListaGeneralizada {
             
             }
         }
-    
+
 }
 
