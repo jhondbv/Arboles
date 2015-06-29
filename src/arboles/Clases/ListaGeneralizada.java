@@ -11,12 +11,12 @@ import java.util.Stack;
  * @author vero
  */
 public class ListaGeneralizada {
-    
+     public NodoLg primero;
     
 
     public void construyeLg(String s){
         Stack pila;
-        NodoLg primero, ultimo, x;
+        NodoLg ultimo, x;
         String hilera;
         int n,i;
         pila = new Stack();
@@ -26,7 +26,7 @@ public class ListaGeneralizada {
         primero.asignaDato(hilera.charAt(1));
         n = hilera.length();
         i = 3;
-        while (i <= n-3){ //verificar que sí sea n-3
+        while (i <= n-3){ 
             x = new NodoLg(null);
             ultimo.asignaLiga(x);
             ultimo = x;

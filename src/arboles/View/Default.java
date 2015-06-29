@@ -6,6 +6,7 @@
 package arboles.View;
 
 import arboles.Clases.DrawBinaryTree;
+import arboles.Clases.ListaDobleLigada;
 import arboles.Clases.ListaGeneralizada;
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -148,9 +149,11 @@ public class Default extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-String cadena = "(a,(b,(e,f),c))";
+String cadena = "(a(b(e,f),c))";
         ListaGeneralizada lg = new ListaGeneralizada();
         lg.construyeLg(cadena);
+        ListaDobleLigada ld = new ListaDobleLigada();
+        ld.convierteNarioABinario(lg.primero);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

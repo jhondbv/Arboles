@@ -11,9 +11,10 @@ import java.util.Stack;
  * @author vero
  */
 public class ListaDobleLigada {
-    
+    public NodoDoble raiz;
+     
     public NodoDoble convierteNarioABinario(NodoLg r){
-        NodoDoble raiz, x, ultimo;
+       NodoDoble x, ultimo;
         NodoLg p, q;
         Stack pila;
         pila = new Stack();
@@ -43,7 +44,7 @@ public class ListaDobleLigada {
                 pila.push(x);
                 pila.push(q.retornaLiga());
             }
-            ultimo.asignaLi(x);
+            ultimo.asignaLd(x);
             ultimo = x;
             p = p.retornaLiga();   
             }
