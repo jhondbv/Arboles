@@ -57,7 +57,25 @@ public class ListaDobleLigada {
         return raiz;
     }
 
-    
+    public int gradoArbol(NodoDoble raiz){
+        NodoDoble p;
+        int g, grado;
+        g = 0;
+        grado = 0;
+        p = raiz.retornaLi();
+        while(p != null){
+            g++;
+            if(p.retornaLi() != null){
+                grado = gradoArbol(p);
+            }
+            p = p.retornaLd();
+        }
+        if(g>=grado){
+            grado = g;
+        }
+        return grado;
+    }
+    //hojas: se miran los nodos que no tengan liga izquierda
 
 }
 

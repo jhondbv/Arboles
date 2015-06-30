@@ -8,6 +8,7 @@ package arboles.View;
 import arboles.Clases.DrawBinaryTree;
 import arboles.Clases.ListaDobleLigada;
 import arboles.Clases.ListaGeneralizada;
+import arboles.Clases.NodoDoble;
 import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.*;
@@ -153,7 +154,10 @@ String cadena = "(a(b(e,f),c))";
         ListaGeneralizada lg = new ListaGeneralizada();
         lg.construyeLg(cadena);
         ListaDobleLigada ld = new ListaDobleLigada();
-        ld.convierteNarioABinario(lg.primero);
+        NodoDoble ld1;
+        ld1 = ld.convierteNarioABinario(lg.primero);
+        int g = ld.gradoArbol(ld1);
+        System.out.println(g);
 
     }//GEN-LAST:event_jButton2ActionPerformed
 

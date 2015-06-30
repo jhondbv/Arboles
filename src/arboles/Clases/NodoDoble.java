@@ -15,14 +15,14 @@ public class NodoDoble {
     NodoDoble ld;
     NodoDoble li;
     
-    NodoDoble(Object d)
+public   NodoDoble(Object d)
     {
         this.dato=d;
         this.ld=null;
         this.li=null;
     }
     
-    NodoDoble()
+public   NodoDoble()
     {
         this.dato=null;
         this.ld=null;
