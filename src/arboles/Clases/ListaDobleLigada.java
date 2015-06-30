@@ -4,6 +4,8 @@
  */
 package arboles.Clases;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -12,7 +14,8 @@ import java.util.Stack;
  */
 public class ListaDobleLigada {
     public NodoDoble raiz;
-     
+
+  
     public NodoDoble convierteNarioABinario(NodoLg r){
        NodoDoble x, ultimo;
         NodoLg p, q;
@@ -77,6 +80,32 @@ public class ListaDobleLigada {
     }
     //hojas: se miran los nodos que no tengan liga izquierda
 
+
+        public List<String> hijos(NodoDoble raiz, char dato){
+            NodoDoble p,q,x;
+            List lista = new ArrayList() {};
+            p = raiz;
+            x = p.retornaLi();
+            while(x != null){
+                if(p.retornaDato().equals(dato)){ 
+                    if(p.retornaLi() != null){
+                        q = p.retornaLi();
+                        while(q != null){
+                        lista.add(q.retornaDato());
+                        q = q.retornaLd();
+                        }
+                        x= null;
+                    }else{
+                        return null; //no tiene hijos
+                    }
+                }else{
+                lista = hijos(x,dato);
+                x = p.retornaLd();
+                lista = hijos(x,dato);
+                }
+            }
+            return lista;
+        }
 }
 
 

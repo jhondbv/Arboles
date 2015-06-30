@@ -10,6 +10,7 @@ import arboles.Clases.ListaDobleLigada;
 import arboles.Clases.ListaGeneralizada;
 import arboles.Clases.NodoDoble;
 import java.awt.Color;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.*;
 
@@ -150,14 +151,15 @@ public class Default extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-String cadena = "(a(b(e,f),c))";
+String cadena = "(a(b(e(g,h,i),f),c,d))";
         ListaGeneralizada lg = new ListaGeneralizada();
         lg.construyeLg(cadena);
         ListaDobleLigada ld = new ListaDobleLigada();
         NodoDoble ld1;
         ld1 = ld.convierteNarioABinario(lg.primero);
         int g = ld.gradoArbol(ld1);
-        System.out.println(g);
+        List<String> lista = ld.hijos(ld1,'e');
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
