@@ -144,4 +144,81 @@ public class ListaDobleLigada {
         return p;
 
     }
+    
+    // Retorna la altura de un arbol
+    public int Altura(NodoDoble r)
+    {
+        int alt = 1;
+        int p =1;
+        if(r.li!=null)//valida hijos
+        {
+            
+            alt = Altura(r.li);// se llama recursivamente al metodo altura para que evalue la altura del hijo
+             alt++; // aumenta 1 la altura de los nodos hijos , por ser padre 
+        }
+        if(r.ld!=null)//valida si tiene hermanos
+        {
+            p = Altura(r.ld);// se llama recursivamente al metodo altura para evaluar la altura de los hermanos
+            if(p>alt)//se toma la maxima altura entre la del nodo actual o sus hermanos
+            alt = p; 
+        }
+        return alt ;
+    
+    }
+    
+    //Retorna el nodo correspondiente al dato ingresado
+    public NodoDoble GetNodoDato(String d,NodoDoble r)
+    {
+        NodoDoble p=null ;
+        if(r.retornaDato().toString().equals(d))
+        {
+            return r;
+        }
+        if(r.li!=null)
+        {
+            p= GetNodoDato(d, r.li);
+            if(p!=null)
+                return p;
+        }
+        if(r.ld!=null)
+        {
+            p=GetNodoDato(d, r.ld);
+            if(p!=null)
+                return p ;
+        }
+        return p ;
+    }
+    
+    //Retorna el grado de un dato 
+    public int GradoDato(String d)
+    {
+        int grado =0;
+        NodoDoble dato = GetNodoDato(d, raiz);//retorna el Nodo Correspondiente al dato
+        if(dato!=null)
+        grado = CalcularGradoDato(dato);
+        return grado;
+    
+    }
+    
+    //Calcula recursivamente el grado de un dato segun sus hijos
+    public int CalcularGradoDato(NodoDoble r)
+    {
+        int g =0;
+        if(r.li!=null)
+        {
+            g++;// se aumenta en 1 el grado pues se comenzara con el primer hijo
+            NodoDoble p = r.li ;
+            while(p!=null)// mientras tenga hermanos siga el ciclo
+            {
+                if(p.ld!=null)// si tiene un hermano mas se aumenta el grado en 1
+                {
+                    g++;
+                    
+                }
+                p=p.ld;
+            }
+            
+        }
+        return g;
+    }
 }

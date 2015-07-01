@@ -151,13 +151,14 @@ public class Default extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-String cadena = "(a(b(e(g,h,i),f),c,d))";
+String cadena = "(a(b(e(f(o)),g),c,d(h,i(l,m(n(x,z))),j,k)))";
         ListaGeneralizada lg = new ListaGeneralizada();
         lg.construyeLg(cadena);
         ListaDobleLigada ld = new ListaDobleLigada();
         NodoDoble ld1;
         ld1 = ld.convierteNarioABinario(lg.primero);
-        int g = ld.gradoArbol(ld1);
+        int grado = ld.GradoDato("d");
+        NodoDoble g = ld.GetNodoDato("m",ld1);
         List<String> lista = ld.hijos(ld1,'e');
 
 
