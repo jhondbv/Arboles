@@ -160,12 +160,13 @@ public class Default extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
 //String cadena = "(a(b(e(f(o)),g),c,d(h,i(l,m(n(x,z))),j,k)))";
-        String cadena = "(a(b(d(h(i(j(k(l(m))))))),e(z,x),c(f(j))))";
+        String cadena = "(a(b(d(h)),e(z,x),c(f(j))))";
         ListaGeneralizada lg = new ListaGeneralizada();
         lg.construyeLg(cadena);
         ListaDobleLigada ld = new ListaDobleLigada();
         NodoDoble ld1;
         ld1 = ld.convierteNarioABinario(lg.primero);
+        List<NodoDoble> ancestros = ld.GetAncestros("x", ld1);
         panel.DibujarArbol(getGraphics(), ld1);
         /*int count = ld.CountNodos(ld1.retornaLi());
         int grado = ld.GradoDato("d");
