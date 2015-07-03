@@ -106,7 +106,7 @@ public class ListaDobleLigada {
     }
     //hojas: se miran los nodos que no tengan liga izquierda
 
-    public List<NodoDoble> hijos(NodoDoble raiz, String dato) {
+    public List<NodoDoble> GetHijos(NodoDoble raiz, String dato) {
         NodoDoble p, q, x;
         List lista = new ArrayList() {
         };
@@ -163,20 +163,36 @@ public class ListaDobleLigada {
     return pila;
     }*/
 
-    
-    public List<NodoDoble> Tios(String d,NodoDoble r)
+    //Metodo que trae los tios de un dato 
+    public List<NodoDoble> GetTios(String d,NodoDoble r)
     {
-      NodoDoble padre = GetPadre(d, r);
-      
+      NodoDoble padre = GetPadre(d, r); // se obtiene el padre del dato 
        List<NodoDoble> tios = null;
         if(padre!= null)
         {
-            NodoDoble abuelo = GetPadre(padre.retornaDato().toString(), r);
-              tios = hijos(raiz, abuelo.retornaDato().toString());
-              tios.remove(padre);
-              
+            NodoDoble abuelo = GetPadre(padre.retornaDato().toString(), r);//se obtiene el abuelo del dato
+            if(abuelo!=null)
+            {
+             tios = GetHijos(raiz, abuelo.retornaDato().toString());// se obtiene los hijos del abuelo
+              tios.remove(padre);// se elimina el padre del dato de la lista de hijos del abuelo 
+            }
         }
         return tios;
+    
+    }
+    
+    
+    //Metodo que consulta los primos de un dato
+    public List<NodoDoble> GetPrimos(String d,NodoDoble r)
+    {
+        List<NodoDoble> primos =null;
+        List<NodoDoble> tios = GetTios(d, r);// se obtienen los tios del dato actual
+        for (NodoDoble tio : tios) {
+            List<NodoDoble> hijostios = GetHijos(tio ,d);//se consultan los hijos de cada tio
+            if(hijostios!=null)
+            primos.addAll(hijostios);// se agregan los hijos de cada tio en la lista de primos
+        }
+        return primos;
     
     }
     
