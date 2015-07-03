@@ -10,6 +10,7 @@ import arboles.Clases.ListaDobleLigada;
 import arboles.Clases.ListaGeneralizada;
 import arboles.Clases.NodoDoble;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.*;
@@ -35,6 +36,13 @@ public class Default extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         panel = new DrawBinaryTree();
         jButton2 = new javax.swing.JButton();
+        
+       /* JScrollPane scrollPane = new JScrollPane(panel);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setBounds(50, 30, 300, 50);
+        panel.setPreferredSize(new Dimension(500, 400));
+        panel.add(scrollPane);*/
         
         setTitle("Graficador de Arboles");
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,15 +159,18 @@ public class Default extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
-String cadena = "(a(b(e(f(o)),g),c,d(h,i(l,m(n(x,z))),j,k)))";
+//String cadena = "(a(b(e(f(o)),g),c,d(h,i(l,m(n(x,z))),j,k)))";
+        String cadena = "(a(b(d(h(i(j(k(l(m))))))),e(z,x),c(f(j))))";
         ListaGeneralizada lg = new ListaGeneralizada();
         lg.construyeLg(cadena);
         ListaDobleLigada ld = new ListaDobleLigada();
         NodoDoble ld1;
         ld1 = ld.convierteNarioABinario(lg.primero);
+        panel.DibujarArbol(getGraphics(), ld1);
+        /*int count = ld.CountNodos(ld1.retornaLi());
         int grado = ld.GradoDato("d");
         NodoDoble g = ld.GetNodoDato("m",ld1);
-        List<String> lista = ld.hijos(ld1,'e');
+        List<String> lista = ld.hijos(ld1,'e');*/
 
 
     }//GEN-LAST:event_jButton2ActionPerformed

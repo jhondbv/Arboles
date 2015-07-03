@@ -60,6 +60,26 @@ public class ListaDobleLigada {
         return raiz;
     }
 
+    
+    public int CountNodos(NodoDoble r)
+    {
+        int count =1;
+        if(r==null)
+        {
+            return 0;
+        }
+        if(r.ld!=null)
+        {
+            count += CountNodos(r.ld);
+        }
+        if(r.li!=null)
+        {
+            count +=CountNodos(r.li);
+        }
+        return count;
+    
+    }
+    
     public int gradoArbol(NodoDoble raiz) {
         NodoDoble p;
         int g, grado;

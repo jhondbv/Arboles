@@ -14,12 +14,16 @@ public class NodoDoble {
     Object dato;
     NodoDoble ld;
     NodoDoble li;
+    int x;
+    int y;
     
 public   NodoDoble(Object d)
     {
         this.dato=d;
         this.ld=null;
         this.li=null;
+        this.x=0;
+        this.y=0;
     }
     
 public   NodoDoble()
