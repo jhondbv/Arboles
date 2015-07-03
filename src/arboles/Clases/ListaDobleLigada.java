@@ -106,18 +106,18 @@ public class ListaDobleLigada {
     }
     //hojas: se miran los nodos que no tengan liga izquierda
 
-    public List<String> hijos(NodoDoble raiz, char dato) {
+    public List<NodoDoble> hijos(NodoDoble raiz, String dato) {
         NodoDoble p, q, x;
         List lista = new ArrayList() {
         };
         p = raiz;
         x = p.retornaLi();
         while (x != null) {
-            if (p.retornaDato().equals(dato)) {
+            if (p.retornaDato().toString().equals(dato)) {
                 if (p.retornaLi() != null) {
                     q = p.retornaLi();
                     while (q != null) {
-                        lista.add(q.retornaDato());
+                        lista.add(q);
                         q = q.retornaLd();
                     }
                     x = null;
@@ -142,12 +142,13 @@ public class ListaDobleLigada {
 
     }
     
-    public Stack<NodoDoble> RecorrerAncestros(Stack pila , NodoDoble r, String d )
+   /* public Stack<NodoDoble> RecorrerAncestros(Stack pila , NodoDoble r, String d )
     {
         
         if(r.retornaDato().toString().equals(d))
         {
-            return pila ; 
+            pila.push(new NodoDoble());
+            return pila  ; 
         }
         if(r.li!=null)
         {
@@ -168,8 +169,24 @@ public class ListaDobleLigada {
             }
         }
     return pila;
-    }
+    }*/
 
+    
+    public List<NodoDoble> Tios(String d,NodoDoble r)
+    {
+      NodoDoble padre = GetPadre(d, r);
+       List<NodoDoble> tios = null;
+        if(padre!= null)
+        {
+              NodoDoble dato = GetNodoDato(d, r);
+              tios = hijos(raiz, padre.retornaDato().toString());
+              tios.remove(dato);
+              
+        }
+        return tios;
+    
+    }
+    
     //metodo recursivo que recorre el arbol en busca del padre del dato ingresado
     public NodoDoble RecorrerPadre(String d, NodoDoble r, Stack<NodoDoble> pila) {
         NodoDoble p = null;
