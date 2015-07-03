@@ -110,27 +110,19 @@ public class ListaDobleLigada {
         NodoDoble p, q, x;
         List lista = new ArrayList() {
         };
-        p = raiz;
-        x = p.retornaLi();
-        while (x != null) {
-            if (p.retornaDato().toString().equals(dato)) {
-                if (p.retornaLi() != null) {
-                    q = p.retornaLi();
-                    while (q != null) {
-                        lista.add(q);
-                        q = q.retornaLd();
-                    }
-                    x = null;
-                } else {
-                    return null; //no tiene hijos
-                }
-            } else {
-                lista = hijos(x, dato);
-                x = p.retornaLd();
-                lista = hijos(x, dato);
+        p= GetNodoDato(dato, raiz);
+
+        if(p.li!=null)
+        {
+            q = p.li;
+            while(q!=null)
+            {
+                lista.add(q);
+                q=q.ld;
             }
         }
         return lista;
+
     }
 
     //obtiene el padre del dato ingresado
@@ -175,12 +167,13 @@ public class ListaDobleLigada {
     public List<NodoDoble> Tios(String d,NodoDoble r)
     {
       NodoDoble padre = GetPadre(d, r);
+      
        List<NodoDoble> tios = null;
         if(padre!= null)
         {
-              NodoDoble dato = GetNodoDato(d, r);
-              tios = hijos(raiz, padre.retornaDato().toString());
-              tios.remove(dato);
+            NodoDoble abuelo = GetPadre(padre.retornaDato().toString(), r);
+              tios = hijos(raiz, abuelo.retornaDato().toString());
+              tios.remove(padre);
               
         }
         return tios;
