@@ -130,7 +130,10 @@ public class ListaDobleLigada {
 
         Stack<NodoDoble> pila = new Stack<NodoDoble>();// se crea una pila para apilar los padres del arbol
         RecorrerPadre(d, r, pila);// se utiliza otro metodo que se llama a si mismo recursivamente para recorrer el arbol
-        return pila.pop();//se retorna el ultimo padre , en caso de que el dato no exista , esta pila vendra vacia y retornara null
+        NodoDoble datoreturn = null;
+        if(!pila.empty())
+            datoreturn=pila.pop();
+        return datoreturn;//se retorna el ultimo padre , en caso de que el dato no exista , esta pila vendra vacia y retornara null
 
     }
     
