@@ -9,12 +9,19 @@ import arboles.Clases.DrawBinaryTree;
 import arboles.Clases.ListaDobleLigada;
 import arboles.Clases.ListaGeneralizada;
 import arboles.Clases.NodoDoble;
+import java.awt.BorderLayout;
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.HeadlessException;
 import java.util.List;
 import java.util.Stack;
+
+import javafx.beans.value.ObservableValue;
 import javax.swing.JFrame;
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
@@ -22,7 +29,12 @@ import javax.swing.*;
  */
 public class Default extends javax.swing.JFrame {
 
-    private DrawBinaryTree panel;
+    private DrawBinaryTree panelBinary;
+    private DrawBinaryTree panelN;
+    private DrawBinaryTree panelAVL;
+    private JTabbedPane jtab;
+    private JButton jButton1;
+    private JButton jButton2;
 
     /**
      * Creates new form Default
@@ -33,76 +45,84 @@ public class Default extends javax.swing.JFrame {
 
     private void initComponent() {
 
-        //Controles
         jButton1 = new javax.swing.JButton();
-        panel = new DrawBinaryTree();
         jButton2 = new javax.swing.JButton();
+        panelBinary = new DrawBinaryTree();
+        panelN = new DrawBinaryTree();
+        panelAVL = new DrawBinaryTree();
+        JPanel frame = new JPanel(null);
+        JScrollPane scrollPane = new JScrollPane(panelBinary);
+        JScrollPane scrollPane1 = new JScrollPane(panelN);
+        JScrollPane scrollPane2 = new JScrollPane(panelAVL);
         jtab = new javax.swing.JTabbedPane();
-        /* JScrollPane scrollPane = new JScrollPane(panel);
-         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-         scrollPane.setBounds(50, 30, 300, 50);
-         panel.setPreferredSize(new Dimension(500, 400));
-         panel.add(scrollPane);*/
-        jtab.add(panel);
-        
-        setTitle("Graficador de Arboles");
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        panelBinary.setPreferredSize(new Dimension(1000, 1000));
+        panelN.setPreferredSize(new Dimension(1000, 1000));
+        panelAVL.setPreferredSize(new Dimension(1000, 1000));
+
+        
+        ChangeListener changeListener = new ChangeListener() {
+            public void stateChanged(ChangeEvent event) {
+                JTabbedPane sourceTabbedPane = (JTabbedPane) event.getSource();
+                int index = sourceTabbedPane.getSelectedIndex();
+                switch (sourceTabbedPane.getTitleAt(index)) {
+                    case "Arbol Binario":
+                        if(panelBinary.raizP!=null)
+                        panelBinary.DibujarArbol(panelBinary.raizP);
+                        break;
+                    case "Arbol N-ario":
+                        break;
+                    case "Arbol AVL":
+                        break;
+                    default:
+                        break;
+                }
             }
-        });
+
+          
+        };
+        
+        jtab.addChangeListener(changeListener);
 
         jButton2.setText("Pruebas");
+        jButton2.setBounds(530, 50, 150, 20);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        panel.setBackground(java.awt.Color.white);
+        jtab.add("Arbol Binario", scrollPane);
+        jtab.add("Arbol N-ario", scrollPane1);
+        jtab.add("Arbol AVL", scrollPane2);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(panel);
-        panel.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 500, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(0, 460, Short.MAX_VALUE)
-        );
+        jtab.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+        jtab.setBounds(20, 20, 400, 400);
 
-        //Contenido dinamico 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jtab, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton2)
-                                .addComponent(jButton1))
-                        .addContainerGap(238, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jtab, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButton1)
-                                        .addGap(28, 28, 28)
-                                        .addComponent(jButton2)))
-                        .addContainerGap(23, Short.MAX_VALUE))
-        );
+        frame.setPreferredSize(new Dimension(700, 500));
+        frame.add(jtab);
+        frame.add(jButton1);
+        frame.add(jButton2);
+        frame.setVisible(true);
+        setContentPane(frame);
+
         pack();
+    }
+
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        //String cadena = "(a(b(e(f(o)),g),c,d(h,i(l,m(n(x,z))),j,k)))";
+        //String cadena = "(a(b(d(h)),e(z,x),c(f(j))))";
+        String cadena = "(a(b(f),c(g,h,i),d(j(l,m)),e(k)))";
+        ListaGeneralizada lg = new ListaGeneralizada();
+        lg.construyeLg(cadena);
+        ListaDobleLigada ld = new ListaDobleLigada();
+        NodoDoble ld1;
+        ld1 = ld.convierteNarioABinario(lg.primero);
+
+        panelBinary.DibujarArbol(ld1);
+
     }
 
     /**
@@ -114,80 +134,21 @@ public class Default extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jtab = new javax.swing.JTabbedPane();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jtab, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(238, Short.MAX_VALUE))
+            .addGap(0, 867, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtab, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton2)))
-                .addContainerGap(23, Short.MAX_VALUE))
+            .addGap(0, 529, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        panel.paintRectangle(panel.getGraphics());
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-//String cadena = "(a(b(e(f(o)),g),c,d(h,i(l,m(n(x,z))),j,k)))";
-        //String cadena = "(a(b(d(h)),e(z,x),c(f(j))))";
-        String cadena = "(a(b(f),c(g,h,i),d(j(l,m)),e(k)))";
-        ListaGeneralizada lg = new ListaGeneralizada();
-        lg.construyeLg(cadena);
-        ListaDobleLigada ld = new ListaDobleLigada();
-        NodoDoble ld1;
-        ld1 = ld.convierteNarioABinario(lg.primero);
-        List<NodoDoble> tios = ld.GetTios("z", ld1);
-        panel.DibujarArbol(getGraphics(), ld1);
-        int hojas = ld.hojas(ld1);
-        /*int count = ld.CountNodos(ld1.retornaLi());
-         int grado = ld.GradoDato("d");
-         NodoDoble g = ld.GetNodoDato("m",ld1);
-         List<String> lista = ld.hijos(ld1,'e');*/
-
-
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,8 +160,5 @@ public class Default extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JTabbedPane jtab;
     // End of variables declaration//GEN-END:variables
 }
