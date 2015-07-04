@@ -5,10 +5,12 @@
  */
 package arboles.View;
 
+import arboles.Clases.ArbolAvl;
 import arboles.Clases.DrawBinaryTree;
 import arboles.Clases.ListaDobleLigada;
 import arboles.Clases.ListaGeneralizada;
 import arboles.Clases.NodoDoble;
+import arboles.Clases.NodoDobleAvl;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -17,7 +19,6 @@ import java.awt.HeadlessException;
 import java.util.List;
 import java.util.Stack;
 
-import javafx.beans.value.ObservableValue;
 import javax.swing.JFrame;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -115,12 +116,15 @@ public class Default extends javax.swing.JFrame {
         //String cadena = "(a(b(e(f(o)),g),c,d(h,i(l,m(n(x,z))),j,k)))";
         //String cadena = "(a(b(d(h)),e(z,x),c(f(j))))";
         String cadena = "(a(b(f),c(g,h,i),d(j(l,m)),e(k)))";
+        //String cadena = "(x(b(f),a))";
         ListaGeneralizada lg = new ListaGeneralizada();
         lg.construyeLg(cadena);
         ListaDobleLigada ld = new ListaDobleLigada();
         NodoDoble ld1;
         ld1 = ld.convierteNarioABinario(lg.primero);
-
+        ArbolAvl avl = new ArbolAvl();
+        avl.construyeAvl(ld1);
+        NodoDobleAvl a = avl.raiz;
         panelBinary.DibujarArbol(ld1);
 
     }

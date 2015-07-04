@@ -10,11 +10,16 @@ package arboles.Clases;
  */
 public class ArbolAvl {
     
-    NodoDobleAvl raiz;
+    public NodoDobleAvl raiz;
     
-    public void construyeAvl(NodoDoble raiz){ //¿esto se puede hacer?
-        String r = raiz.retornaDato().toString();
-        insertarDatoEnAvl(r);
+    public void construyeAvl(NodoDoble r){ //¿esto se puede hacer?
+        if(r!=null)
+        {
+            insertarDatoEnAvl(r.retornaDato().toString());
+            construyeAvl(r.li);
+            construyeAvl(r.ld);
+        
+        }
         
     }
     
@@ -28,7 +33,7 @@ public class ArbolAvl {
         x = new NodoDobleAvl(d);
         if(raiz==null){
             raiz = x;
-            return; //este return es necesario?
+            return; 
         }
         p = raiz; //se empieza buscando por la raíz
         q = null; //la raiz no tiene padre
