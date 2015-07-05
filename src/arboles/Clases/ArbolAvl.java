@@ -12,9 +12,10 @@ public class ArbolAvl {
     
     public NodoDobleAvl raiz;
     
-    public void construyeAvl(NodoDoble r){ //¿esto se puede hacer?
+    public void construyeAvl(NodoDoble r){ 
         if(r!=null)
         {
+            //Se hace recorrido inorden del árbol binario
             insertarDatoEnAvl(r.retornaDato().toString());
             construyeAvl(r.li);
             construyeAvl(r.ld);
@@ -81,19 +82,18 @@ public class ArbolAvl {
         if(Math.abs(pivote.retornaFb())<2){ //retorna si el arbol con x insertado queda balanceado
             return;
         }
-        /* 
-         */
+        
         if(pivote.retornaFb() == 2){
-            if(q.retornaFb()==1){ //Corresponde a una rotación a la derecha
+            if(q.retornaFb() == 1){ //Corresponde a una rotación a la derecha
                 unaRotacionALaDerecha(pivote,q);
             }else{ //Corresponde a doble rotación a la derecha
-                dobleRotacionALaDerecha(pivote,q);
+                q = dobleRotacionALaDerecha(pivote,q);
             }
         }else{
-            if(q.retornaFb()==-1){ //Corresponde a una rotación a la derecha
+            if(q.retornaFb() == -1){ //Corresponde a una rotación a la derecha
                 unaRotacionALaIzquierda(pivote,q);
             }else{ //Corresponde a doble rotación a la derecha
-                dobleRotacionALaIzquierda(pivote,q);
+                q = dobleRotacionALaIzquierda(pivote,q);
             }
         }
         if(padrePivote == null){
@@ -128,7 +128,7 @@ public class ArbolAvl {
     }
     
     //r: Es el hijo izquierdo de q cuando fb de q = 1 o es el hijo derecho de q cuando fb de q = -1
-    public void dobleRotacionALaDerecha(NodoDobleAvl p, NodoDobleAvl q){ //Se realiza cuando fb de p = 2 y fb de q = -1
+    public NodoDobleAvl dobleRotacionALaDerecha(NodoDobleAvl p, NodoDobleAvl q){ //Se realiza cuando fb de p = 2 y fb de q = -1
         
         NodoDobleAvl r;
         r = q.retornaLd(); //r es el hijo derecho de q
@@ -151,10 +151,10 @@ public class ArbolAvl {
                 q.asignaFb(1);
         }
         r.asignaFb(0);
-        q = r;
+        return r;
     }
     
-    public void dobleRotacionALaIzquierda(NodoDobleAvl p,NodoDobleAvl q){ //Se realiza cuando fb de p = -2 y fb de q = 1
+    public NodoDobleAvl dobleRotacionALaIzquierda(NodoDobleAvl p,NodoDobleAvl q){ //Se realiza cuando fb de p = -2 y fb de q = 1
         
         NodoDobleAvl r;
         r = q.retornaLi(); //r es hijo izquierdo de q
@@ -176,8 +176,7 @@ public class ArbolAvl {
                 q.asignaFb(0);     
         }
         r.asignaFb(0);
-        
-        
+        return r;
     }
     
     public static boolean esNumero(String cadena){ //La idea de este método es aberiguar si el dato que se ingresa es un número o no
