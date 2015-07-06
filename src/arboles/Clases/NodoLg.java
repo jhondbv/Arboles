@@ -13,6 +13,8 @@ public class NodoLg {
     int sw;
     Object dato;
     NodoLg liga;
+    int x ;
+    int y ;
     
     NodoLg(Object d)
     {

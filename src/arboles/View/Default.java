@@ -69,9 +69,11 @@ public class Default extends javax.swing.JFrame {
                 switch (sourceTabbedPane.getTitleAt(index)) {
                     case "Arbol Binario":
                         if(panelBinary.raizP!=null)
-                        panelBinary.DibujarArbol(panelBinary.raizP);
+                          panelBinary.paintComponent(panelBinary.getGraphics());
                         break;
                     case "Arbol N-ario":
+                         if(panelN.raizN!=null)
+                        panelN.paintComponent(panelN.getGraphics());
                         break;
                     case "Arbol AVL":
                         break;
@@ -112,20 +114,21 @@ public class Default extends javax.swing.JFrame {
 
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+  // TODO add your handling code here:
         //String cadena = "(a(b(e(f(o)),g),c,d(h,i(l,m(n(x,z))),j,k)))";
         //String cadena = "(a(b(d(h)),e(z,x),c(f(j))))";
-        String cadena = "(a(b(f),c(g,h,i),d(j(l,m)),e(k)))";
-        //String cadena = "(x(b(f),a))";
+        String cadena = "(a(b(e,f(x,y)),c(h,i,j,k),d(p,r,u,v)))";
+        //String cadena = "(a(b(e,f),c(h,i,j),d))";
         ListaGeneralizada lg = new ListaGeneralizada();
         lg.construyeLg(cadena);
         ListaDobleLigada ld = new ListaDobleLigada();
         NodoDoble ld1;
         ld1 = ld.convierteNarioABinario(lg.primero);
-        ArbolAvl avl = new ArbolAvl();
-        avl.construyeAvl(ld1);
-        NodoDobleAvl a = avl.raiz;
-        panelBinary.DibujarArbol(ld1);
+        
+         panelN.DibujarArbolNario(lg.primero, panelN.getGraphics());
+        panelBinary.DibujarArbol(ld1,panelBinary.getGraphics());
+        jtab.setSelectedIndex(1);
+        jtab.setSelectedIndex(0);
 
     }
 
