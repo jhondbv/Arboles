@@ -10,14 +10,19 @@ package arboles.Clases;
  */
 public class NodoDobleAvl {
      Object dato;
-    NodoDobleAvl ld;
-    NodoDobleAvl li;
+    public NodoDobleAvl ld;
+    public NodoDobleAvl li;
     int fb;
+    int x;
+    int y ;
+    
     public NodoDobleAvl(Object d){
         dato = d;
         ld = null;
         li = null;
         fb = 0; //factor de balance
+        x=0;
+        y=0;
     }
     
     public void asignaDato(Object d){

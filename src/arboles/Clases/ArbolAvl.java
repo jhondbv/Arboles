@@ -24,6 +24,22 @@ public class ArbolAvl {
         
     }
     
+    
+     public int CountNodos(NodoDobleAvl r) {
+        int count = 1;
+        if (r == null) {
+            return 0;
+        }
+        if (r.ld != null) {
+            count += CountNodos(r.ld);
+        }
+        if (r.li != null) {
+            count += CountNodos(r.li);
+        }
+        return count;
+
+    }
+    
     public void insertarDatoEnAvl(String d){
         int aux;
         NodoDobleAvl x; //nodo para dato a insertar

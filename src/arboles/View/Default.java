@@ -76,6 +76,8 @@ public class Default extends javax.swing.JFrame {
                         panelN.paintComponent(panelN.getGraphics());
                         break;
                     case "Arbol AVL":
+                         if(panelN.raizA!=null)
+                        panelAVL.paintComponent(panelAVL.getGraphics());
                         break;
                     default:
                         break;
@@ -116,15 +118,17 @@ public class Default extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
   // TODO add your handling code here:
         //String cadena = "(a(b(e(f(o)),g),c,d(h,i(l,m(n(x,z))),j,k)))";
-        //String cadena = "(a(b(d(h)),e(z,x),c(f(j))))";
-        String cadena = "(a(b(e,f(x,y)),c(h,i,j,k),d(p,r,u,v)))";
-        //String cadena = "(a(b(e,f),c(h,i,j),d))";
+        String cadena = "(a(b(d,g,h),e(z,x,u),c(f(j))))";
+       // String cadena = "(a(b(e,f(x,y)),c(h,i,j,k),d(p,r,u,v)))";
+        //String cadena = "(e(c(b(a),d),f))";
         ListaGeneralizada lg = new ListaGeneralizada();
         lg.construyeLg(cadena);
         ListaDobleLigada ld = new ListaDobleLigada();
         NodoDoble ld1;
         ld1 = ld.convierteNarioABinario(lg.primero);
-        
+        ArbolAvl arbol = new ArbolAvl();
+        arbol.construyeAvl(ld1);
+        panelAVL.DibujarArbolAvl(arbol.raiz, panelAVL.getGraphics());
          panelN.DibujarArbolNario(lg.primero, panelN.getGraphics());
         panelBinary.DibujarArbol(ld1,panelBinary.getGraphics());
         jtab.setSelectedIndex(1);
