@@ -47,7 +47,7 @@ public class DrawBinaryTree extends JPanel {
         raizN = raiz;
           if(raizN==null)
         {
-            PintarVacio(g);
+           
             return;
         }
         int p = recorrerArbolNario(raiz.retornaLiga(), 1, 2, g);//llama recursivamente al metodo que establece la posicion de cada nodo
@@ -143,7 +143,7 @@ public class DrawBinaryTree extends JPanel {
         raizP = raiz;
         if(raizP==null)
         {
-            PintarVacio(g);
+           
             return;
         }
         ListaDobleLigada ld = new ListaDobleLigada();
@@ -157,9 +157,9 @@ public class DrawBinaryTree extends JPanel {
     //Metodo que dibuja al arbol 
     public void DibujarArbolAvl(NodoDobleAvl raiz, Graphics g) {
         raizA = raiz;
-           if(raizN==null)
+        if(raizA==null)
         {
-            PintarVacio(g);
+            
             return;
         }
         ArbolAvl ld = new ArbolAvl();
