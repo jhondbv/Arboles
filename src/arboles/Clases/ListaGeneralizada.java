@@ -15,6 +15,11 @@ public class ListaGeneralizada {
     
 
     public void construyeLg(String s){
+       if(s.isEmpty())
+       {
+       primero = null;
+       return;
+       }
         Stack pila;
         NodoLg ultimo, x;
         String hilera;

@@ -42,7 +42,14 @@ public class DrawBinaryTree extends JPanel {
 
     //Metodo que dibuja un arbol N-ario representado como lista generalizada
     public void DibujarArbolNario(NodoLg raiz, Graphics g) {
+        
+       
         raizN = raiz;
+          if(raizN==null)
+        {
+            PintarVacio(g);
+            return;
+        }
         int p = recorrerArbolNario(raiz.retornaLiga(), 1, 2, g);//llama recursivamente al metodo que establece la posicion de cada nodo
         int posr = (p + 1) / 2;
         PintarNodo(posr, raiz, 1, g);
@@ -134,6 +141,11 @@ public class DrawBinaryTree extends JPanel {
     //Metodo que dibuja al arbol 
     public void DibujarArbol(NodoDoble raiz, Graphics g) {
         raizP = raiz;
+        if(raizP==null)
+        {
+            PintarVacio(g);
+            return;
+        }
         ListaDobleLigada ld = new ListaDobleLigada();
         int LI = ld.CountNodos(raiz.li);//cuenta los nodos de la liga izquierda
         PintarNodo(LI + 1, raiz, 1, g);//pinta nodo Raiz
@@ -145,6 +157,11 @@ public class DrawBinaryTree extends JPanel {
     //Metodo que dibuja al arbol 
     public void DibujarArbolAvl(NodoDobleAvl raiz, Graphics g) {
         raizA = raiz;
+           if(raizN==null)
+        {
+            PintarVacio(g);
+            return;
+        }
         ArbolAvl ld = new ArbolAvl();
         int LI = ld.CountNodos(raiz.li);//cuenta los nodos de la liga izquierda
         int LD = ld.CountNodos(raiz.ld);//cuenta los nodos de la liga derecha
@@ -311,6 +328,15 @@ public class DrawBinaryTree extends JPanel {
         g2d.drawOval(p.x, p.y, 30, 30);
         g2d.setFont(new Font("Tahoma", Font.PLAIN, 20));
         g2d.drawString(p.retornaDato().toString(), p.x + 10, p.y + 20);
+
+    }
+    
+    private void PintarVacio( Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(Color.BLACK);
+        g2d.setStroke(new BasicStroke(3));
+        g2d.setFont(new Font("Tahoma", Font.PLAIN, 40));
+        g2d.drawString("ARBOL VACIO",100,50);
 
     }
 

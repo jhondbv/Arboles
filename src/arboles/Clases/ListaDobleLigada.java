@@ -17,6 +17,11 @@ public class ListaDobleLigada {
     public NodoDoble raiz;
 
     public NodoDoble convierteNarioABinario(NodoLg r) {
+        if(r==null)
+        {
+        raiz = null;
+        return raiz;
+        }
         NodoDoble x, ultimo;
         NodoLg p, q;
         Stack pila;
@@ -87,22 +92,32 @@ public class ListaDobleLigada {
     }
 
     public int gradoArbol(NodoDoble raiz) {
-        NodoDoble p;
-        int g, grado;
-        g = 0;
-        grado = 0;
-        p = raiz.retornaLi();
-        while (p != null) {
+    
+        int g=0;
+        int grado=0;
+        if(raiz==null)
+        {
+            return 0;
+        }
+        if(raiz.ld ==null && raiz.li==null)
+        {
+            return 1;
+        }
+        
+        if(raiz.ld !=null)
+        {
             g++;
-            if (p.retornaLi() != null) {
-                grado = gradoArbol(p);
-            }
-            p = p.retornaLd();
+            g+=gradoArbol(raiz.ld);
+        
         }
-        if (g >= grado) {
-            grado = g;
+        if(raiz.li !=null)
+        {
+            grado=gradoArbol(raiz.li);
+            if(grado>g)
+                g=grado;
         }
-        return grado;
+        return g;
+        
     }
     //hojas: se miran los nodos que no tengan liga izquierda
 
@@ -110,17 +125,18 @@ public class ListaDobleLigada {
         NodoDoble p, q, x;
         List lista = new ArrayList() {
         };
-        p= GetNodoDato(dato, raiz);
+        p = GetNodoDato(dato, raiz);
 
-        if(p.li!=null)
-        {
-            q = p.li;
-            while(q!=null)
-            {
-                lista.add(q);
-                q=q.ld;
+        if (p != null) {
+            if (p.li != null) {
+                q = p.li;
+                while (q != null) {
+                    lista.add(q);
+                    q = q.ld;
+                }
             }
         }
+
         return lista;
 
     }
@@ -131,74 +147,79 @@ public class ListaDobleLigada {
         Stack<NodoDoble> pila = new Stack<NodoDoble>();// se crea una pila para apilar los padres del arbol
         RecorrerPadre(d, r, pila);// se utiliza otro metodo que se llama a si mismo recursivamente para recorrer el arbol
         NodoDoble datoreturn = null;
-        if(!pila.empty())
-            datoreturn=pila.pop();
+        if (!pila.empty()) {
+            datoreturn = pila.pop();
+        }
         return datoreturn;//se retorna el ultimo padre , en caso de que el dato no exista , esta pila vendra vacia y retornara null
 
     }
-    
-   /* public Stack<NodoDoble> RecorrerAncestros(Stack pila , NodoDoble r, String d )
-    {
-        
-        if(r.retornaDato().toString().equals(d))
-        {
-            pila.push(new NodoDoble());
-            return pila  ; 
-        }
-        if(r.li!=null)
-        {
-            pila = RecorrerAncestros(pila, r.li, d);
-            if(!pila.empty())
-            {
-                pila.push(r);
-                return pila;
-            }
-        }
-        if(r.ld!=null)
-        {
-            pila = RecorrerAncestros(pila, r.ld, d);
-            if(!pila.empty())
-            {
-                pila.push(r);
-                return pila;
-            }
-        }
-    return pila;
-    }*/
 
+    /* public Stack<NodoDoble> RecorrerAncestros(Stack pila , NodoDoble r, String d )
+     {
+        
+     if(r.retornaDato().toString().equals(d))
+     {
+     pila.push(new NodoDoble());
+     return pila  ; 
+     }
+     if(r.li!=null)
+     {
+     pila = RecorrerAncestros(pila, r.li, d);
+     if(!pila.empty())
+     {
+     pila.push(r);
+     return pila;
+     }
+     }
+     if(r.ld!=null)
+     {
+     pila = RecorrerAncestros(pila, r.ld, d);
+     if(!pila.empty())
+     {
+     pila.push(r);
+     return pila;
+     }
+     }
+     return pila;
+     }*/
     //Metodo que trae los tios de un dato 
-    public List<NodoDoble> GetTios(String d,NodoDoble r)
-    {
-      NodoDoble padre = GetPadre(d, r); // se obtiene el padre del dato 
-       List<NodoDoble> tios = null;
-        if(padre!= null)
-        {
+    public List<NodoDoble> GetTios(String d, NodoDoble r) {
+        NodoDoble padre = GetPadre(d, r); // se obtiene el padre del dato 
+        List<NodoDoble> tios = null;
+        if (padre != null) {
             NodoDoble abuelo = GetPadre(padre.retornaDato().toString(), r);//se obtiene el abuelo del dato
-            if(abuelo!=null)
-            {
-             tios = GetHijos(raiz, abuelo.retornaDato().toString());// se obtiene los hijos del abuelo
-              tios.remove(padre);// se elimina el padre del dato de la lista de hijos del abuelo 
+            if (abuelo != null) {
+                tios = GetHijos(r, abuelo.retornaDato().toString());// se obtiene los hijos del abuelo
+                tios.remove(padre);// se elimina el padre del dato de la lista de hijos del abuelo 
             }
         }
         return tios;
-    
+
     }
-    
-    
+
     //Metodo que consulta los primos de un dato
-    public List<NodoDoble> GetPrimos(String d,NodoDoble r)
-    {
-        List<NodoDoble> primos =null;
+    public List<NodoDoble> GetPrimos(String d, NodoDoble r) {
+        List<NodoDoble> primos = null;
         List<NodoDoble> tios = GetTios(d, r);// se obtienen los tios del dato actual
         for (NodoDoble tio : tios) {
-            List<NodoDoble> hijostios = GetHijos(tio ,d);//se consultan los hijos de cada tio
-            if(hijostios!=null)
-            primos.addAll(hijostios);// se agregan los hijos de cada tio en la lista de primos
+            List<NodoDoble> hijostios = GetHijos(r, tio.retornaDato().toString());//se consultan los hijos de cada tio
+            if (hijostios != null) {
+                if (hijostios.size() > 0) {
+                    if(primos == null)
+                    {
+                    primos = new ArrayList<NodoDoble>();
+                    }
+                    
+                    boolean addAll = primos.addAll(hijostios); // se agregan los hijos de cada tio en la lista de primos
+
+                }
+            }
+
         }
         return primos;
-    
+
     }
-    
+
     //metodo recursivo que recorre el arbol en busca del padre del dato ingresado
     public NodoDoble RecorrerPadre(String d, NodoDoble r, Stack<NodoDoble> pila) {
         NodoDoble p = null;
@@ -272,8 +293,8 @@ public class ListaDobleLigada {
     }
 
     //Retorna el grado de un dato 
-    public int GradoDato(String d) {
-        int grado = 0;
+    public int GradoDato(String d, NodoDoble raiz) {
+        int grado = -1;
         NodoDoble dato = GetNodoDato(d, raiz);//retorna el Nodo Correspondiente al dato
         if (dato != null) {
             grado = CalcularGradoDato(dato);
