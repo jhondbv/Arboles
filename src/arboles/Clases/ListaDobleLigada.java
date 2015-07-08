@@ -107,15 +107,16 @@ public class ListaDobleLigada {
         if(raiz.ld !=null)
         {
             g++;
-            g+=gradoArbol(raiz.ld);
+            g= g+gradoArbol(raiz.ld);
         
         }
         if(raiz.li !=null)
         {
             grado=gradoArbol(raiz.li);
-            if(grado>g)
-                g=grado;
+            
         }
+        if(grado>g)
+                g=grado;
         return g;
         
     }
