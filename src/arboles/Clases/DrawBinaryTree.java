@@ -53,6 +53,10 @@ public class DrawBinaryTree extends JPanel {
         int p = recorrerArbolNario(raiz.retornaLiga(), 1, 2, g);//llama recursivamente al metodo que establece la posicion de cada nodo
         int posr = (p + 1) / 2;
         PintarNodo(posr, raiz, 1, g);
+        if(raiz.retornaLiga()==null)
+        {
+            return;
+        }
         recorrerNodosLineasN(raizN, g, raizN);
 
     }
@@ -104,7 +108,7 @@ public class DrawBinaryTree extends JPanel {
         NodoLg p = null;
         int q = 0;
         NodoLg x = null;
-        if (r == null) {
+        if (r == null ) {
             return;
         }
         p = r;
@@ -149,9 +153,13 @@ public class DrawBinaryTree extends JPanel {
         ListaDobleLigada ld = new ListaDobleLigada();
         int LI = ld.CountNodos(raiz.li);//cuenta los nodos de la liga izquierda
         PintarNodo(LI + 1, raiz, 1, g);//pinta nodo Raiz
+        if(raiz.li!=null)
+        {
         DrawnLI(LI, raiz.li, 2, g);//pinta liga izquierda de nodo 
         RecorrerNodosLineas(raiz, g);//recorre los nodos y los une con una linea segun su posicion
 
+        }
+        
     }
 
     //Metodo que dibuja al arbol 
@@ -202,6 +210,10 @@ public class DrawBinaryTree extends JPanel {
 
     //Pinta la liga izquierda del arbol 
     private int DrawnLIAVL(int pos, NodoDobleAvl r, int alt, Graphics g) {
+         if(r==null)
+        {
+            return pos;
+        }
         if (r.li != null && r.ld == null) {
 
             PintarNodo(pos, r, alt, g);
@@ -230,6 +242,10 @@ public class DrawBinaryTree extends JPanel {
     //Pinta la liga Derecha del arbol Avl
     private int DrawnLD(int pos, NodoDobleAvl r, int alt, Graphics g) {
 
+        if(r==null)
+        {
+            return pos;
+        }
         if (r.ld != null && r.li == null) {
 
             PintarNodo(pos, r, alt, g);
