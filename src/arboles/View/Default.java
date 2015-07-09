@@ -397,7 +397,7 @@ if(panelBinary.raizP==null)
          }
          if(input.equals(panelBinary.raizP.retornaDato().toString()))
          {
-              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato raiz no tiene tios","Primo",JOptionPane.ERROR_MESSAGE);
+              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato raiz no tiene primos","Primo",JOptionPane.ERROR_MESSAGE);
                return;
          }
          List<NodoDoble> primos = ld.GetPrimos(input,panelBinary.raizP);

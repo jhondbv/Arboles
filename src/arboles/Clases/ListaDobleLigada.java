@@ -17,10 +17,9 @@ public class ListaDobleLigada {
     public NodoDoble raiz;
 
     public NodoDoble convierteNarioABinario(NodoLg r) {
-        if(r==null)
-        {
-        raiz = null;
-        return raiz;
+        if (r == null) {
+            raiz = null;
+            return raiz;
         }
         NodoDoble x, ultimo;
         NodoLg p, q;
@@ -91,34 +90,37 @@ public class ListaDobleLigada {
 
     }
 
-    public int gradoArbol(NodoDoble raiz) {
-    
-        int g=0;
-        int grado=0;
-        if(raiz==null)
-        {
+    public int gradoArbol(NodoDoble r) {
+
+        int g = 0;
+        int c = 0;
+        int grado = 0;
+        NodoDoble p;
+        if (r == null) {
             return 0;
+
         }
-        if(raiz.ld ==null && raiz.li==null)
-        {
+        if (r.li == null && r.ld == null) {
             return 1;
         }
-        
-        if(raiz.ld !=null)
-        {
-            g++;
-            g= g+gradoArbol(raiz.ld);
-        
+        p = r;
+        while (p != null) {
+            c = c + 1;
+            if (p.li != null) {
+                g = gradoArbol(p.li);
+                if (g > grado) {
+                    grado = g;
+                }
+            }
+            p = p.ld;
         }
-        if(raiz.li !=null)
-        {
-            grado=gradoArbol(raiz.li);
-            
+
+        if (c > grado) {
+            grado = c;
         }
-        if(grado>g)
-                g=grado;
-        return g;
-        
+
+        return grado;
+
     }
     //hojas: se miran los nodos que no tengan liga izquierda
 
@@ -206,11 +208,10 @@ public class ListaDobleLigada {
             List<NodoDoble> hijostios = GetHijos(r, tio.retornaDato().toString());//se consultan los hijos de cada tio
             if (hijostios != null) {
                 if (hijostios.size() > 0) {
-                    if(primos == null)
-                    {
-                    primos = new ArrayList<NodoDoble>();
+                    if (primos == null) {
+                        primos = new ArrayList<NodoDoble>();
                     }
-                    
+
                     boolean addAll = primos.addAll(hijostios); // se agregan los hijos de cada tio en la lista de primos
 
                 }
