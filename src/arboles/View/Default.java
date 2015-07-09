@@ -435,7 +435,7 @@ if(panelBinary.raizP==null)
                return;
          }
          List<NodoDoble> ancestros = ld.GetAncestros(input,panelBinary.raizP);
-         if(ancestros ==null)
+         if(ancestros.size()==0)
          {
              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el arbol","Ancestro",JOptionPane.ERROR_MESSAGE);
                return;

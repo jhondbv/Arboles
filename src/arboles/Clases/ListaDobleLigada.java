@@ -204,6 +204,8 @@ public class ListaDobleLigada {
     public List<NodoDoble> GetPrimos(String d, NodoDoble r) {
         List<NodoDoble> primos = null;
         List<NodoDoble> tios = GetTios(d, r);// se obtienen los tios del dato actual
+        if(tios!=null)
+        {
         for (NodoDoble tio : tios) {
             List<NodoDoble> hijostios = GetHijos(r, tio.retornaDato().toString());//se consultan los hijos de cada tio
             if (hijostios != null) {
@@ -217,6 +219,7 @@ public class ListaDobleLigada {
                 }
             }
 
+        }
         }
         return primos;
 
