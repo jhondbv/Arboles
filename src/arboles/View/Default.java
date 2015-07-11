@@ -472,6 +472,7 @@ if(panelBinary.raizP==null)
     public static void main(String args[]) {
         Default d = new Default();
         d.setVisible(true);
+        d.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
     }
 
