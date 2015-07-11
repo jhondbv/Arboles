@@ -21,41 +21,28 @@ public class DrawBinaryTree extends JPanel {
     public DrawBinaryTree() {
        
         setBackground(Color.white); //para modificar el fondo Jpanel
-        setLocation(10, 10); //Para darle dimensiones al Jpanel
+        setLocation(10, 10); //Se establece la posicion del panel
 
     }
-    //Para dibujar un rectángulo
-    public void paintRectangle(Graphics g) {
 
-        g.drawOval(220, 20, 30, 30);// x,y, ancho,largo
-        g.drawString("A", 230, 40);
-
-        g.drawOval(180, 80, 30, 30);
-        g.drawString("B", 190, 100);
-        g.drawLine(235, 50, 195, 80);//línea al padre es x(padre)+15 y(padre)+30, linea a si mismo x(actual)+15 y(actual)
-
-        g.drawOval(260, 80, 30, 30);
-        g.drawString("C", 270, 100);
-        g.drawLine(235, 50, 275, 80);
-
-    }
 
     //Método que dibuja un árbol N-ario representado como lista generalizada
     public void DibujarArbolNario(NodoLg raiz, Graphics g) {
 
-        raizN = raiz;
+        raizN = raiz;// se almacena la raiz del arbol N-ario para dibujarlo en cada repaint del panel
           if(raizN==null)
         {
             return;
         }
-        int p = recorrerArbolNario(raiz.retornaLiga(), 1, 2, g);//llama al método que establece la posición de cada nodo
+        int p = recorrerArbolNario(raiz.retornaLiga(), 1, 2, g);//llama al método que establece la posición de cada nodo y retorna la maxima posicion establecida 
+        
         int posr = (p + 1) / 2; //posición de la raíz
-        PintarNodo(posr, raiz, 1, g);
+        PintarNodo(posr, raiz, 1, g);//pinta el nodo raiz 
         if(raiz.retornaLiga()==null)
         {
             return;
         }
-        recorrerNodosLineasN(raizN, g, raizN);
+        recorrerNodosLineasN(raizN, g, raizN);//recorre los nodos y los une con su padre correspondiente por medio de una linea
 
     }
 
@@ -103,34 +90,35 @@ public class DrawBinaryTree extends JPanel {
 
     //Metodo recursivo que dibuja las lineas que unen a los nodos hijos con sus padres
     private void recorrerNodosLineasN(NodoLg r, Graphics g, NodoLg padre) {
+        
         NodoLg p = null;
         int q = 0;
         NodoLg x = null;
-        if (r == null ) {
+        if (r == null ) { // si el nodo es nulo se termina el metodo
             return;
         }
         p = r;
         while (p != null) {
 
-            if (p.retornaSw() == 0) {
+            if (p.retornaSw() == 0) {// si tiene hermanos o hijos sigue el proceso
 
                 if (p.retornaLiga() != null) {
                     recorrerNodosLineasN(p.retornaLiga(), g, padre);
                     if (p != raizN) {
-                        PintarLineas(padre, p, g, Color.BLUE);
+                        PintarLineas(padre, p, g, Color.BLUE);//pinta la lina desde el nodo actual hacia su padre
                     }
                     return;
                 } else {
-                    PintarLineas(padre, p, g, Color.BLUE);
+                    PintarLineas(padre, p, g, Color.BLUE);//pinta la lina desde el nodo actual hacia su padre
 
                     return;
 
                 }
             }
-            if (p.retornaSw() == 1) {
-                x = (NodoLg) p.retornaDato();
-                recorrerNodosLineasN(x.retornaLiga(), g, x);
-                PintarLineas(padre, x, g, Color.BLUE);
+            if (p.retornaSw() == 1) {// si tiene hijos sigue el proceso
+                x = (NodoLg) p.retornaDato();// retorna el dato que corresponde al nodo hijo
+                recorrerNodosLineasN(x.retornaLiga(), g, x);//llama recursivamente para recorrer los hermanos 
+                PintarLineas(padre, x, g, Color.BLUE);//Pinta la linea entre el hijo y el padre
 
             }
             p = p.retornaLiga();
@@ -142,7 +130,7 @@ public class DrawBinaryTree extends JPanel {
 
     //Metodo que dibuja al arbol 
     public void DibujarArbol(NodoDoble raiz, Graphics g) {
-        raizP = raiz;
+        raizP = raiz;//se almacena la raiz del arbol Binario para dibujarlo en cada repaint del panel
         if(raizP==null)
         {
            
@@ -174,30 +162,30 @@ public class DrawBinaryTree extends JPanel {
         int sum =LI+LD;
         PintarNodo(LI + 1, raiz, 1, g);//pinta nodo Raiz
         DrawnLIAVL(LI, raiz.li, 2, g);//pinta liga izquierda de nodo 
-        DrawnLD(sum, raiz.ld, 2, g);//pinta liga izquierda de nodo 
+        DrawnLD(sum, raiz.ld, 2, g);//pinta liga derecha de nodo 
         RecorrerNodosLineasAVL(raiz, g);//recorre los nodos y los une con una linea segun su posicion
 
     }
 
     //Pinta la liga izquierda del arbol 
     private int DrawnLI(int pos, NodoDoble r, int alt, Graphics g) {
-        if (r.li != null && r.ld == null) {
+        if (r.li != null && r.ld == null) {//para este caso pinta un nodo con hijos ,pero  sin hermanos
 
             PintarNodo(pos, r, alt, g);
             pos--;
         }
-        if (r.ld != null) {
-            pos = DrawnLI(pos, r.ld, alt + 1, g);
-            PintarNodo(pos, r, alt, g);
+        if (r.ld != null) {//Si el nodo  tiene hermanos 
+            pos = DrawnLI(pos, r.ld, alt + 1, g);//llama recursivamente a DrawLI para calcular la maxima posicion de los hermanos
+            PintarNodo(pos, r, alt, g);//pinta el nodo actual 
             pos--;
         }
-        if (r.li != null) {
+        if (r.li != null) {//si el nodo tiene hijos
 
             //PintarNodo(pos, r, alt, g);
-            pos = DrawnLI(pos, r.li, alt + 1, g);
+            pos = DrawnLI(pos, r.li, alt + 1, g);//llama recursivamente a DrawLI para calcular la maxima posicion de los hijos
 
         }
-        if (r.li == null && r.ld == null) {
+        if (r.li == null && r.ld == null) {// si el nodo es una hoja lo pinta sin ninguna validacion 
 
             PintarNodo(pos, r, alt, g);
             pos--;
@@ -206,9 +194,9 @@ public class DrawBinaryTree extends JPanel {
 
     }
 
-    //Pinta la liga izquierda del arbol 
+    //Pinta la liga izquierda del arbol  AVL
     private int DrawnLIAVL(int pos, NodoDobleAvl r, int alt, Graphics g) {
-         if(r==null)
+         if(r==null) //si el nodo es nulo retorna la posicion alctual
         {
             return pos;
         }
@@ -271,7 +259,7 @@ public class DrawBinaryTree extends JPanel {
 
     }
 
-    //Recorre los nodos recursivamente uniendolos con un mentodo Pintarlineas
+    //Recorre los nodos recursivamente uniendolos con un metodo Pintarlineas
     private void RecorrerNodosLineas(NodoDoble r, Graphics g) {
         if (r.li != null) {
             PintarLineas(r, r.li, g, Color.BLUE);//Pinta las lineas entre el nodo actual y su hijo
