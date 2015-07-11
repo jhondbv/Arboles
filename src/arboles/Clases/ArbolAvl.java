@@ -11,7 +11,8 @@ package arboles.Clases;
 public class ArbolAvl {
     
     public NodoDobleAvl raiz;
-    
+    /*Método que construye el árbol avl usando recorrido inorden
+    y el método de insertar un dato al árbol*/
     public void construyeAvl(NodoDoble r){ 
         if(r!=null)
         {
@@ -24,7 +25,7 @@ public class ArbolAvl {
         
     }
     
-    
+    //Para cuántos nodos tiene el árbol
      public int CountNodos(NodoDobleAvl r) {
         int count = 1;
         if (r == null) {
@@ -207,7 +208,7 @@ public class ArbolAvl {
     public int compara(String cadena1, String cadena2){
 
         int num1,num2;
-        if(esNumero(cadena1) && esNumero(cadena2)){ //pregunto si los dos datos son números para hacer su respectiva comparacion
+        if(esNumero(cadena1) && esNumero(cadena2)){ //pregunto si los dos datos son números para hacer su respectiva comparación
             num1 = Integer.parseInt(cadena1);
             num2 = Integer.parseInt(cadena2);
             if(num1 == num2){ //Los datos son iguales

@@ -14,17 +14,17 @@ import javax.swing.*;
  */
 public class DrawBinaryTree extends JPanel {
 
-    public NodoDoble raizP;
-    public NodoLg raizN;
-    public NodoDobleAvl raizA;
+    public NodoDoble raizP; //raiz del árbol binario
+    public NodoLg raizN; //raíz del árbol n-ario
+    public NodoDobleAvl raizA; //raíz del árbol avl
 
     public DrawBinaryTree() {
-        /* this.setPreferredSize(new Dimension(491,454));*/
-        setBackground(Color.white);
-        setLocation(10, 10);
+       
+        setBackground(Color.white); //para modificar el fondo Jpanel
+        setLocation(10, 10); //Para darle dimensiones al Jpanel
 
     }
-
+    //Para dibujar un rectángulo
     public void paintRectangle(Graphics g) {
 
         g.drawOval(220, 20, 30, 30);// x,y, ancho,largo
@@ -32,7 +32,7 @@ public class DrawBinaryTree extends JPanel {
 
         g.drawOval(180, 80, 30, 30);
         g.drawString("B", 190, 100);
-        g.drawLine(235, 50, 195, 80);//linea al padre es x(padre)+15 y(padre)+30, linea a si mismo x(actual)+15 y(actual)
+        g.drawLine(235, 50, 195, 80);//línea al padre es x(padre)+15 y(padre)+30, linea a si mismo x(actual)+15 y(actual)
 
         g.drawOval(260, 80, 30, 30);
         g.drawString("C", 270, 100);
@@ -40,18 +40,16 @@ public class DrawBinaryTree extends JPanel {
 
     }
 
-    //Metodo que dibuja un arbol N-ario representado como lista generalizada
+    //Método que dibuja un árbol N-ario representado como lista generalizada
     public void DibujarArbolNario(NodoLg raiz, Graphics g) {
-        
-       
+
         raizN = raiz;
           if(raizN==null)
         {
-           
             return;
         }
-        int p = recorrerArbolNario(raiz.retornaLiga(), 1, 2, g);//llama recursivamente al metodo que establece la posicion de cada nodo
-        int posr = (p + 1) / 2;
+        int p = recorrerArbolNario(raiz.retornaLiga(), 1, 2, g);//llama al método que establece la posición de cada nodo
+        int posr = (p + 1) / 2; //posición de la raíz
         PintarNodo(posr, raiz, 1, g);
         if(raiz.retornaLiga()==null)
         {
@@ -61,7 +59,7 @@ public class DrawBinaryTree extends JPanel {
 
     }
 
-    //Metodo Recursivo que establece la posicion de cada nodo
+    //Método Recursivo que establece la posición de cada nodo
     private int recorrerArbolNario(NodoLg r, int pos, int alt, Graphics g) {
         NodoLg p = null;
         int q = 0;
