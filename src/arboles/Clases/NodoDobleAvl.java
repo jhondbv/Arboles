@@ -9,14 +9,14 @@ package arboles.Clases;
  * @author vero
  */
 public class NodoDobleAvl {
-     Object dato;
+    Object dato;
     public NodoDobleAvl ld;
     public NodoDobleAvl li;
     int fb;
     int x;
     int y ;
     
-    public NodoDobleAvl(Object d){
+    public NodoDobleAvl(Object d){ //Constructor que crea un nodoAvl cuando se le entra el dato como parámetro
         dato = d;
         ld = null;
         li = null;
@@ -24,6 +24,7 @@ public class NodoDobleAvl {
         x=0;
         y=0;
     }
+ //métodos get y set para utilizar los nodos dobles avl
     
     public void asignaDato(Object d){
         dato = d;

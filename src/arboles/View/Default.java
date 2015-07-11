@@ -44,13 +44,10 @@ public class Default extends javax.swing.JFrame {
     private JButton btnTios;
     private JButton btnGradoDato;
     private JButton btnPrimos;
-
     private JLabel lbl;
     private JTextField textbox;
 
-    /**
-     * Creates new form Default
-     */
+
     public Default() {
         initComponent();
     }
@@ -86,17 +83,17 @@ public class Default extends javax.swing.JFrame {
                 JTabbedPane sourceTabbedPane = (JTabbedPane) event.getSource();
                 int index = sourceTabbedPane.getSelectedIndex();
                 switch (sourceTabbedPane.getTitleAt(index)) {
-                    case "Arbol Binario":
+                    case "Árbol Binario":
                         if (panelBinary.raizP != null) {
                             panelBinary.paintComponent(panelBinary.getGraphics());
                         }
                         break;
-                    case "Arbol N-ario":
+                    case "Árbol N-ario":
                         if (panelN.raizN != null) {
                             panelN.paintComponent(panelN.getGraphics());
                         }
                         break;
-                    case "Arbol AVL":
+                    case "Árbol AVL":
                         if (panelN.raizA != null) {
                             panelAVL.paintComponent(panelAVL.getGraphics());
                         }
@@ -110,7 +107,7 @@ public class Default extends javax.swing.JFrame {
 
         jtab.addChangeListener(changeListener);
         lbl.setBounds(560, 30, 400, 20);
-        lbl.setText("Ingrese la cadena que representará su arbol");
+        lbl.setText("Ingrese la cadena que representará su árbol");
         textbox.setBounds(530, 60, 400, 25);
         btnInsert.setText("Insertar");
         btnInsert.setBounds(640, 90, 150, 20);
@@ -133,8 +130,8 @@ public class Default extends javax.swing.JFrame {
                 btnGradoActionPerformed(evt);
             }
         });
-        btnGradoDato.setText("Grado Dato");
-        btnGradoDato.setBounds(560, 200, 150, 20);
+        btnGradoDato.setText("Grado dato");
+        btnGradoDato.setBounds(560, 200, 120, 20);
         btnGradoDato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGradoDatoActionPerformed(evt);
@@ -162,7 +159,7 @@ public class Default extends javax.swing.JFrame {
                 btnPrimoActionPerformed(evt);
             }
         });
-        btnTios.setText("Tios");
+        btnTios.setText("Tíos");
         btnTios.setBounds(560, 300, 120, 20);
         btnTios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -176,13 +173,12 @@ public class Default extends javax.swing.JFrame {
                 btnAncestroActionPerformed(evt);
             }
         });
-        jtab.add("Arbol Binario", scrollPane);
-        jtab.add("Arbol N-ario", scrollPane1);
-        jtab.add("Arbol AVL", scrollPane2);
+        jtab.add("Árbol Binario", scrollPane);
+        jtab.add("Árbol N-ario", scrollPane1);
+        jtab.add("Árbol AVL", scrollPane2);
 
         jtab.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
         jtab.setBounds(20, 20, 500, 500);
-
         
         SetStatusButton(false);
         
@@ -202,7 +198,7 @@ public class Default extends javax.swing.JFrame {
         frame.setVisible(true);
         setContentPane(frame);
         setResizable(false);
-        setTitle("Graficador de Arboles");
+        setTitle("Graficador de árboles");
         pack();
     }
 
@@ -222,11 +218,7 @@ public class Default extends javax.swing.JFrame {
     }
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-        //String cadena = "(a(b(e(f(o)),g),c,d(h,i(l,m(n(x,z))),j,k)))";
-        //String cadena = "(a(b(d,g,h),e(z,x,u),c(f(j))))";
-        // String cadena = "(a(b(e,f(x,y)),c(h,i,j,k),d(p,r,u,v)))";
-        //String cadena = "(e(c(b(a),d),f))";
+
         String cadena = textbox.getText();
         ListaGeneralizada lg = new ListaGeneralizada();
         lg.construyeLg(cadena);
@@ -256,11 +248,11 @@ public class Default extends javax.swing.JFrame {
          ListaDobleLigada ld = new ListaDobleLigada();
 if(panelBinary.raizP==null)         
 {
-     JOptionPane.showMessageDialog((Component)evt.getSource(),"la altura del arbol vacio es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
+     JOptionPane.showMessageDialog((Component)evt.getSource(),"La altura del árbol vacío es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
      return;
 }
          int altura = ld.Altura(panelBinary.raizP);
-         String msg = "la altura del arbol es : "+ altura; 
+         String msg = "La altura del árbol es : "+ altura; 
          JOptionPane.showMessageDialog((Component)evt.getSource(),msg,"Altura",JOptionPane.INFORMATION_MESSAGE);
       
     }
@@ -268,12 +260,12 @@ if(panelBinary.raizP==null)
         // TODO add your handling code here:
          if(panelBinary.raizP==null)         
 {
-     JOptionPane.showMessageDialog((Component)evt.getSource(),"El grado del arbol vacio es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
+     JOptionPane.showMessageDialog((Component)evt.getSource(),"El grado del árbol vacío es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
      return;
 }
          ListaDobleLigada ld = new ListaDobleLigada();
          int grado = ld.gradoArbol(panelBinary.raizP);
-         String msg = "el grado del arbol es : "+ grado; 
+         String msg = "El grado del árbol es : " + grado; 
          JOptionPane.showMessageDialog((Component)evt.getSource(),msg,"Grado",JOptionPane.INFORMATION_MESSAGE);
       
     }
@@ -282,10 +274,10 @@ if(panelBinary.raizP==null)
         // TODO add your handling code here:
             if(panelBinary.raizP==null)         
 {
-     JOptionPane.showMessageDialog((Component)evt.getSource(),"El grado del arbol vacio es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
+     JOptionPane.showMessageDialog((Component)evt.getSource(),"El grado del árbol vacío es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
      return;
 }
-         String input = JOptionPane.showInputDialog("Ingrese el dato : ");
+         String input = JOptionPane.showInputDialog("Ingrese el dato: ");
          if(input.isEmpty())
          {
                JOptionPane.showMessageDialog((Component)evt.getSource(),"Ingrese un dato","Grado",JOptionPane.INFORMATION_MESSAGE);
@@ -295,10 +287,10 @@ if(panelBinary.raizP==null)
          int grado = ld.GradoDato(input,panelBinary.raizP);
          if(grado==-1)
          {
-             JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el arbol","Grado",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el árbol","Grado",JOptionPane.ERROR_MESSAGE);
                return;
          }
-         String msg = "el grado del dato "+ input + " es : "+ grado; 
+         String msg = "El grado del dato "+ input + " es: "+ grado; 
          JOptionPane.showMessageDialog((Component)evt.getSource(),msg,"Grado",JOptionPane.INFORMATION_MESSAGE);
       
     }
@@ -307,19 +299,19 @@ if(panelBinary.raizP==null)
         // TODO add your handling code here:
          if(panelBinary.raizP==null)         
 {
-     JOptionPane.showMessageDialog((Component)evt.getSource(),"El numero de hojas del arbol vacio es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
+     JOptionPane.showMessageDialog((Component)evt.getSource(),"El número de hojas del árbol vacío es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
      return;
 }
         ListaDobleLigada ld = new ListaDobleLigada();
          int hojas = ld.hojas(panelBinary.raizP);
-         String msg = "el numero de hojas del arbol es : "+ hojas; 
+         String msg = "El número de hojas del arbol es: "+ hojas; 
          JOptionPane.showMessageDialog((Component)evt.getSource(),msg,"Hojas",JOptionPane.INFORMATION_MESSAGE);
       
     }
      
       private void btnPadreActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-         String input = JOptionPane.showInputDialog("Ingrese el dato : ");
+         String input = JOptionPane.showInputDialog("Ingrese el dato: ");
          if(input.isEmpty())
          {
                JOptionPane.showMessageDialog((Component)evt.getSource(),"Ingrese un dato","Padre",JOptionPane.INFORMATION_MESSAGE);
@@ -328,62 +320,62 @@ if(panelBinary.raizP==null)
          ListaDobleLigada ld = new ListaDobleLigada();
          if(panelBinary.raizP==null)
          {
-             JOptionPane.showMessageDialog((Component)evt.getSource(),"Arbol vacio","Padre",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog((Component)evt.getSource(),"Árbol vacío","Padre",JOptionPane.ERROR_MESSAGE);
                return;
          }
          if(input.equals(panelBinary.raizP.retornaDato().toString()))
          {
-              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato raiz no tiene padre","Padre",JOptionPane.ERROR_MESSAGE);
+              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato raíz no tiene padre","Padre",JOptionPane.ERROR_MESSAGE);
                return;
          }
          NodoDoble padre = ld.GetPadre(input,panelBinary.raizP);
          if(padre==null)
          {
-             JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el arbol","Padre",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el árbol","Padre",JOptionPane.ERROR_MESSAGE);
                return;
          }
-         String msg = "EL padre del dato "+ input + " es : "+ padre.retornaDato().toString(); 
+         String msg = "El padre del dato "+ input + " es: "+ padre.retornaDato().toString(); 
          JOptionPane.showMessageDialog((Component)evt.getSource(),msg,"Padre",JOptionPane.INFORMATION_MESSAGE);
       
     }
       
       private void btnTioActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-         String input = JOptionPane.showInputDialog("Ingrese el dato : ");
+         String input = JOptionPane.showInputDialog("Ingrese el dato: ");
          if(input.isEmpty())
          {
-               JOptionPane.showMessageDialog((Component)evt.getSource(),"Ingrese un dato","Tio",JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.showMessageDialog((Component)evt.getSource(),"Ingrese un dato","Tío",JOptionPane.INFORMATION_MESSAGE);
                return;
          }
          ListaDobleLigada ld = new ListaDobleLigada();
          if(panelBinary.raizP==null)
          {
-             JOptionPane.showMessageDialog((Component)evt.getSource(),"Arbol vacio","Tio",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog((Component)evt.getSource(),"Árbol vacío","Tío",JOptionPane.ERROR_MESSAGE);
                return;
          }
          if(input.equals(panelBinary.raizP.retornaDato().toString()))
          {
-              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato raiz no tiene tios","Tio",JOptionPane.ERROR_MESSAGE);
+              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato raíz no tiene tíos","Tío",JOptionPane.ERROR_MESSAGE);
                return;
          }
          List<NodoDoble> tios = ld.GetTios(input,panelBinary.raizP);
          if(tios ==null)
          {
-             JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el arbol o no tiene tios","Tio",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el árbol o no tiene tíos","Tío",JOptionPane.ERROR_MESSAGE);
                return;
          }
-         String msg = "Los tios del dato "+ input + " son : \n"; 
+         String msg = "Los tíos del dato "+ input + " son: \n"; 
           for (int i = 0; i < tios.size(); i++) {
               msg+= tios.get(i).retornaDato().toString() +"\n";
               
           }
-         JOptionPane.showMessageDialog((Component)evt.getSource(),msg,"Tio",JOptionPane.INFORMATION_MESSAGE);
+         JOptionPane.showMessageDialog((Component)evt.getSource(),msg,"Tío",JOptionPane.INFORMATION_MESSAGE);
       
     }
       
        private void btnPrimoActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-         String input = JOptionPane.showInputDialog("Ingrese el dato : ");
+         String input = JOptionPane.showInputDialog("Ingrese el dato: ");
          if(input.isEmpty())
          {
                JOptionPane.showMessageDialog((Component)evt.getSource(),"Ingrese un dato","Primo",JOptionPane.INFORMATION_MESSAGE);
@@ -392,21 +384,21 @@ if(panelBinary.raizP==null)
          ListaDobleLigada ld = new ListaDobleLigada();
          if(panelBinary.raizP==null)
          {
-             JOptionPane.showMessageDialog((Component)evt.getSource(),"Arbol vacio","Primo",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog((Component)evt.getSource(),"Árbol vacío","Primo",JOptionPane.ERROR_MESSAGE);
                return;
          }
          if(input.equals(panelBinary.raizP.retornaDato().toString()))
          {
-              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato raiz no tiene primos","Primo",JOptionPane.ERROR_MESSAGE);
+              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato raíz no tiene primos","Primo",JOptionPane.ERROR_MESSAGE);
                return;
          }
          List<NodoDoble> primos = ld.GetPrimos(input,panelBinary.raizP);
          if(primos ==null)
          {
-             JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el arbol o no tiene primos","Primo",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el árbol o no tiene primos","Primo",JOptionPane.ERROR_MESSAGE);
                return;
          }
-         String msg = "Los primos del dato "+ input + " son : \n "; 
+         String msg = "Los primos del dato "+ input + " son: \n "; 
           for (int i = 0; i < primos.size(); i++) {
               msg+= primos.get(i).retornaDato().toString() +"\n";
               
@@ -417,7 +409,7 @@ if(panelBinary.raizP==null)
        
          private void btnAncestroActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-         String input = JOptionPane.showInputDialog("Ingrese el dato : ");
+         String input = JOptionPane.showInputDialog("Ingrese el dato: ");
          if(input.isEmpty())
          {
                JOptionPane.showMessageDialog((Component)evt.getSource(),"Ingrese un dato","Ancestro",JOptionPane.INFORMATION_MESSAGE);
@@ -426,21 +418,21 @@ if(panelBinary.raizP==null)
          ListaDobleLigada ld = new ListaDobleLigada();
          if(panelBinary.raizP==null)
          {
-             JOptionPane.showMessageDialog((Component)evt.getSource(),"Arbol vacio","Ancestro",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog((Component)evt.getSource(),"Árbol vacío","Ancestro",JOptionPane.ERROR_MESSAGE);
                return;
          }
          if(input.equals(panelBinary.raizP.retornaDato().toString()))
          {
-              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato raiz no tiene ancestro","Ancestro",JOptionPane.ERROR_MESSAGE);
+              JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato raíz no tiene ancestro","Ancestro",JOptionPane.ERROR_MESSAGE);
                return;
          }
          List<NodoDoble> ancestros = ld.GetAncestros(input,panelBinary.raizP);
          if(ancestros.size()==0)
          {
-             JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el arbol","Ancestro",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog((Component)evt.getSource(),"El dato no se encuentra en el árbol","Ancestro",JOptionPane.ERROR_MESSAGE);
                return;
          }
-         String msg = "Los ancestros del dato "+ input + " son : \n"; 
+         String msg = "Los ancestros del dato "+ input + " son: \n"; 
           for (int i = 0; i < ancestros.size(); i++) {
               msg+= ancestros.get(i).retornaDato().toString() +"\n";
               

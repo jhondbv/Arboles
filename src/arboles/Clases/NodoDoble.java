@@ -9,6 +9,8 @@ package arboles.Clases;
  *
  * @author jhon
  */
+
+//En esta clase tenemos los métodos get y set para un nodo doble
 public class NodoDoble {
 
     Object dato;
