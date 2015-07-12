@@ -260,13 +260,13 @@ if(panelBinary.raizP==null)
         // TODO add your handling code here:
          if(panelBinary.raizP==null)         
 {
-     JOptionPane.showMessageDialog((Component)evt.getSource(),"El grado del árbol vacío es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
+     JOptionPane.showMessageDialog((Component)evt.getSource(),"El grado del árbol vacío es 0","Grado del árbol",JOptionPane.INFORMATION_MESSAGE);
      return;
 }
          ListaDobleLigada ld = new ListaDobleLigada();
          int grado = ld.gradoArbol(panelBinary.raizP);
          String msg = "El grado del árbol es : " + grado; 
-         JOptionPane.showMessageDialog((Component)evt.getSource(),msg,"Grado",JOptionPane.INFORMATION_MESSAGE);
+         JOptionPane.showMessageDialog((Component)evt.getSource(),msg,"Grado del árbol",JOptionPane.INFORMATION_MESSAGE);
       
     }
      
@@ -274,13 +274,13 @@ if(panelBinary.raizP==null)
         // TODO add your handling code here:
             if(panelBinary.raizP==null)         
 {
-     JOptionPane.showMessageDialog((Component)evt.getSource(),"El grado del árbol vacío es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
+     JOptionPane.showMessageDialog((Component)evt.getSource(),"El grado del árbol vacío es 0","Grado dato",JOptionPane.INFORMATION_MESSAGE);
      return;
 }
          String input = JOptionPane.showInputDialog("Ingrese el dato: ");
          if(input.isEmpty())
          {
-               JOptionPane.showMessageDialog((Component)evt.getSource(),"Ingrese un dato","Grado",JOptionPane.INFORMATION_MESSAGE);
+               JOptionPane.showMessageDialog((Component)evt.getSource(),"Ingrese un dato","Grado dato",JOptionPane.INFORMATION_MESSAGE);
                return;
          }
          ListaDobleLigada ld = new ListaDobleLigada();
@@ -299,12 +299,12 @@ if(panelBinary.raizP==null)
         // TODO add your handling code here:
          if(panelBinary.raizP==null)         
 {
-     JOptionPane.showMessageDialog((Component)evt.getSource(),"El número de hojas del árbol vacío es 0","Altura",JOptionPane.INFORMATION_MESSAGE);
+     JOptionPane.showMessageDialog((Component)evt.getSource(),"El número de hojas del árbol vacío es 0","Hojas",JOptionPane.INFORMATION_MESSAGE);
      return;
 }
         ListaDobleLigada ld = new ListaDobleLigada();
          int hojas = ld.hojas(panelBinary.raizP);
-         String msg = "El número de hojas del arbol es: "+ hojas; 
+         String msg = "El número de hojas del árbol es: "+ hojas; 
          JOptionPane.showMessageDialog((Component)evt.getSource(),msg,"Hojas",JOptionPane.INFORMATION_MESSAGE);
       
     }
