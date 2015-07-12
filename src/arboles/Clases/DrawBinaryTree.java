@@ -338,7 +338,7 @@ public class DrawBinaryTree extends JPanel {
         g2d.setColor(Color.BLACK);
         g2d.setStroke(new BasicStroke(3));
         g2d.setFont(new Font("Tahoma", Font.PLAIN, 40));
-        g2d.drawString("ARBOL VACIO",100,50);
+        g2d.drawString("ÁRBOL VACÍO",100,50);
 
     }
 
